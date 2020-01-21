@@ -1,0 +1,65 @@
+using System;
+
+namespace game1
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Random stevilo = new Random();
+            int counter = 1;
+            char nadaljevanje;
+
+            bool trajanje = true;
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.WriteLine("Dobrodosli pri ugotavljanju stevila! 1- 10");
+            Console.WriteLine();
+            Console.WriteLine("Vnesite zeljeno stevilo");
+            Console.ResetColor();
+
+            start:
+            int ugotovljeno = stevilo.Next(1, 11);
+
+            while (trajanje)
+            {
+                int ugotovljenoStevilo;
+                ugotovljenoStevilo = Convert.ToInt32(Console.ReadLine());
+
+                if (ugotovljeno == ugotovljenoStevilo)
+                {
+
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    Console.WriteLine("Cesitamo ugotovilo ste stevilo!");
+                    Console.WriteLine("Potrebni poizkusi za ugotovitev: {0}", counter);
+                    Console.WriteLine();
+                    Console.ResetColor();
+                    Console.WriteLine("Zelite nadaljevati z igro?");
+                    Console.WriteLine("1 - YES   2 - NO");
+                    nadaljevanje = Convert.ToChar(Console.ReadLine());
+
+                    switch (nadaljevanje) {
+                        case '1':
+                            Console.ForegroundColor = ConsoleColor.White;
+                            Console.WriteLine();
+                            Console.WriteLine("Vnesite zeljeno stevilo");
+                            Console.ResetColor();
+                            counter = 1;
+                            goto start;
+                            
+                        case '2':
+                            trajanje = false;
+                            break;
+                    }
+                }
+                else
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("Stevilo ni pravilno! Poizkusite ponovno!");
+                    Console.ResetColor();
+                    
+                }
+                counter++;
+            }
+        }
+    }
+}
